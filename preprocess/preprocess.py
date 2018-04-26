@@ -47,7 +47,10 @@ download_unpack("https://data.broadinstitute.org/bbbc/BBBC010/BBBC010_v1_foregro
 destination = "../data"
 files = listdir(join(destination, "BBBC010_v1_images"))
 img_pairs = dict([(f.split("_")[6], join(destination, "BBBC010_v1_images", f))
-                  for f in files if os.path.isfile(join(destination, "BBBC010_v1_images", f)) and f.endswith(".tif")])
+                  for f in files
+                  if os.path.isfile(join(destination, "BBBC010_v1_images", f))
+                  and f.endswith(".tif")
+                  and "w2"==f.split("_")[7]])
 
 files = listdir(join(destination, "BBBC010_v1_foreground_eachworm"))
 
