@@ -3,8 +3,6 @@ Deep Worm project
 Victor Kulikov 2018 Skoltech
 """
 
-# TODO Load BCCC010
-
 import os
 import urllib2
 import zipfile
