@@ -84,10 +84,10 @@ def get_head_tail(image, radius=12, sigma=4, min_distance=10):
 
 
 # Make semantic data
-if not os.path.exists(join(destination, "sematic_data")):
-    os.makedirs(join(destination, "sematic_data"))
+if not os.path.exists(join(destination, "semantic_data")):
+    os.makedirs(join(destination, "semantic_data"))
 for key in img_pairs:
-    copyfile(img_pairs[key], join(destination, "sematic_data", key + ".tif"))
+    copyfile(img_pairs[key], join(destination, "semantic_data", key + ".tif"))
     head_tails = 0
     mask = 0
     for annotation in instances_pairs[key]:
@@ -97,7 +97,7 @@ for key in img_pairs:
         mask += image
     mask[mask > 1] = 2  # intersections
     mask[head_tails > 0] = 3  # heads
-    imsave(join(destination, "sematic_data", key + "_labels.png"), mask)
+    imsave(join(destination, "semantic_data", key + "_labels.png"), mask)
 
 
 # Make instance data

@@ -27,7 +27,7 @@ def get_rescale_func(worm_bbbc_size, worm_target_size):
     k = sqrt(float(worm_bbbc_size) / float(worm_target_size))
 
     def func(I_target):
-        return rescale(I_target, k)
+        return rescale(I_target, k, preserve_range = True)
 
     return func
 

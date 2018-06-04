@@ -34,6 +34,7 @@ def convert_files(folder, output, size_scale_func, intensity_func, suffix='.tif'
         print("Processing {0} from {1} saving to {2}".format(f,len(files),join(output, f)))
         source_image = imread(join(folder, f))
         target_image = intensity_func(size_scale_func(source_image))
+        print(target_image.min(),target_image.max())
         imsave(join(output, f), target_image)
 
 
@@ -52,6 +53,7 @@ mipt_fg, mipt_bg = calc_intensity(mipt_example, mipt_mask > 0, 40)
 print('Average worm size for mipt is {0}'.format(np.sum(mipt_mask > 0)))
 
 rescale_func = get_rescale_func(bbbc_average_size, np.sum(mipt_mask > 0))
+#print(bbbc_fg, mipt_fg, bbbc_bg, mipt_bg)
 intensity_func = get_color_shift(bbbc_fg, mipt_fg, bbbc_bg, mipt_bg)
 
 convert_files(args.source_folder, args.output_path, rescale_func, intensity_func)

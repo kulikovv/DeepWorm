@@ -13,6 +13,8 @@ class SemanticWorms:
         files = [f for f in listdir(self.path) if isfile(join(self.path, f))]
         self.all_names = [n[:-len('.tif')] for n in files if n.endswith('.tif')]
 
+        self.consts = np.load('data/consts.npy').tolist()
+
         # split data
         self.all_names = np.random.permutation(self.all_names)
         number = len(self.all_names)
@@ -56,7 +58,7 @@ class SemanticWorms:
         rgb = imread(join(self.path, basename + '.tif')).astype(np.float32)
         label = imread(join(self.path, basename + '_labels.png'), 'pil')
         # label[label>0]=1
-        rgb = (rgb - rgb.min()) / (rgb.max() - rgb.min()) - 0.5
+        rgb = (rgb - self.consts['min']) / (self.consts['max'] - self.consts['min']) - 0.5
 
         return rgb, label
 
