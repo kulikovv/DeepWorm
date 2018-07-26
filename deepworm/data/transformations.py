@@ -23,10 +23,23 @@ def flip_vertically(prob=0.5):
 
     def f(x,is_label=False):
         if numpy.random.random() < prob:
+            
             return numpy.flipud(x)
         return x
 
     return f
+
+def normalize(mean,std):
+    
+    def f(x,is_label=False):
+        if is_label:
+            x = (x-mean)/std     
+        return x
+
+    return f
+
+def vgg_normalize():
+    return normalize(numpy.array([0.485, 0.456, 0.406]),numpy.array([0.229, 0.224, 0.225]))
 
 
 def rotate90(prob=0.5):

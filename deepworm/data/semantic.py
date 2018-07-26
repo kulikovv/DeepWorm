@@ -112,7 +112,7 @@ class SemanticWorms:
                 np.random.seed(seed)
                 l = t(l)
 
-            images.append(np.expand_dims(np.expand_dims(i, 0), 0))
+            images.append(np.expand_dims(np.expand_dims(i, 0),0))
             labels.append(np.expand_dims(l, 0))
 
         labels = np.clip(np.vstack(labels).astype(np.int), 0, 3)
